@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     font-family: 'Montserrat', Arial, sans-serif;
     color: white;
     overflow-x: hidden;
@@ -19,17 +19,18 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(26, 26, 46, 0.95);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(246, 198, 194, 0.1);
-    padding: 10px 0; /* Added more padding to make header larger */
+    background: rgba(15, 15, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(246, 198, 194, 0.2);
+    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 40px; /* Increased padding for larger header */
+    padding: 30px 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -42,10 +43,10 @@ body {
 
 .brand-text {
     font-family: 'Bebas Neue', cursive;
-    font-size: 32px; /* Increased font size */
+    font-size: 32px;
     font-weight: 400;
     color: #F6C6C2;
-    text-shadow: 0 0 10px rgba(246, 198, 194, 0.3);
+    text-shadow: 0 0 15px rgba(246, 198, 194, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
 }
 
@@ -54,7 +55,7 @@ body {
     height: 8px;
     background: linear-gradient(45deg, #F6C6C2, #8A92C7);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(246, 198, 194, 0.5);
+    box-shadow: 0 0 15px rgba(246, 198, 194, 0.8);
     animation: pulse 2s infinite;
 }
 
@@ -70,10 +71,10 @@ body {
 
 .nav-item {
     font-family: 'Quicksand', sans-serif;
-    color: #8A92C7;
+    color: #9DA4C7;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
     display: flex;
@@ -81,21 +82,23 @@ body {
     gap: 8px;
     padding: 12px 24px;
     border-radius: 20px;
-    background: rgba(138, 146, 199, 0.05);
-    backdrop-filter: blur(10px);
+    background: rgba(20, 20, 40, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(138, 146, 199, 0.2);
 }
 
 .nav-icon {
     font-size: 8px;
     transition: all 0.3s ease;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .nav-item:hover {
     color: #F6C6C2;
-    background: rgba(246, 198, 194, 0.1);
+    background: rgba(246, 198, 194, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(246, 198, 194, 0.2);
+    box-shadow: 0 6px 25px rgba(246, 198, 194, 0.3);
+    border-color: rgba(246, 198, 194, 0.4);
 }
 
 .nav-item:hover .nav-icon {
@@ -105,8 +108,9 @@ body {
 
 .nav-item.active {
     color: #F6C6C2;
-    background: rgba(246, 198, 194, 0.15);
-    box-shadow: 0 0 20px rgba(246, 198, 194, 0.3);
+    background: rgba(246, 198, 194, 0.25);
+    box-shadow: 0 0 25px rgba(246, 198, 194, 0.4);
+    border-color: rgba(246, 198, 194, 0.5);
 }
 
 .nav-item.active .nav-icon {
@@ -132,7 +136,6 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 /* Left Side - Warping Circle */
@@ -159,35 +162,34 @@ body {
     font-family: 'Zain', sans-serif;
     font-size: 70px;
     font-weight: 900;
-    color: #F6C6C2;
-    /* margin-bottom: 20px; */
-    text-shadow: 0 0 20px rgba(246, 198, 194, 0.4);
+    color: #1a1a2e;
+    text-shadow: 
+        0 0 30px rgba(246, 198, 194, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.4);
     position: relative;
     display: block;
-    background: linear-gradient(135deg, #F6C6C2, #E8B4B8, #F6C6C2);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     letter-spacing: -1px;
     line-height: 1.1;
 }
 
 #typed-text {
     margin-right: 4px;
-    background: inherit;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #1a1a2e;
+    text-shadow: 
+        0 0 30px rgba(246, 198, 194, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 .cursor {
     display: inline-block;
     width: 1px;
     height: 48px;
-    background-color: #F6C6C2;
+    background-color: #1a1a2e;
     margin-left: 2px;
     animation: blink-caret 1s ease-in-out infinite;
-    box-shadow: 0 0 5px rgba(246, 198, 194, 0.5);
+    box-shadow: 0 0 10px rgba(246, 198, 194, 0.6);
     vertical-align: top;
     border-radius: 1px;
 }
@@ -205,20 +207,20 @@ body {
 .subtitle {
     font-family: 'Quicksand', sans-serif;
     font-size: 24px;
-    font-weight: 500;
-    color: #C2C9E5;
+    font-weight: 600;
+    color: #2c2c54;
     margin-bottom: 4px;
-    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .description {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.6;
-    color: #B0B7D9;
+    color: #3c3c6e;
     margin-bottom: 30px;
-    opacity: 0.8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .skills {
@@ -230,17 +232,18 @@ body {
 
 .skill-tag {
     font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    background: rgba(246, 198, 194, 0.08);
-    border: 1px solid rgba(246, 198, 194, 0.2);
-    padding: 10px 18px;
+    font-weight: 600;
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid rgba(246, 198, 194, 0.3);
+    padding: 12px 20px;
     border-radius: 25px;
     font-size: 14px;
     color: #F6C6C2;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .skill-tag::before {
@@ -250,15 +253,15 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(246, 198, 194, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(246, 198, 194, 0.2), transparent);
     transition: left 0.5s ease;
 }
 
 .skill-tag:hover {
-    background: rgba(246, 198, 194, 0.15);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(246, 198, 194, 0.25);
-    border-color: rgba(246, 198, 194, 0.4);
+    background: rgba(26, 26, 46, 0.9);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(246, 198, 194, 0.4);
+    border-color: rgba(246, 198, 194, 0.6);
 }
 
 .skill-tag:hover::before {
@@ -266,65 +269,188 @@ body {
 }
 
 /* Projects Page Specific Styles */
-.projects-title {
-    font-family: 'Zain', sans-serif !important;
-    font-weight: 700 !important;
-}
-
-.projects-subtitle {
-    font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
-}
-
 .project-title {
     font-family: 'Zain', sans-serif !important;
     font-weight: 600 !important;
+    color: white !important;  /* Dark navy blue for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.projects-title {
+    font-family: 'Zain', sans-serif !important;
+    font-weight: 600 !important;
+    color: #1a1a2e !important;  /* Dark navy blue for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+
+.projects-subtitle {
+    font-size: 14px;
+    font-family: 'Quicksand', sans-serif !important;
+    font-weight: 600 !important;
+    color: #1a1a2e !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 .project-description {
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 .tech-tag {
-    font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    background: rgba(26, 26, 46, 0.7);
+    border: 1px solid rgba(138, 146, 199, 0.4);
+    color: #C2C9E5;
 }
 
 .project-link {
-    font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid rgba(246, 198, 194, 0.3);
+    color: #F6C6C2;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(26, 26, 46, 0.8) !important;
+    border: 2px solid rgba(246, 198, 194, 0.3) !important;
+    color: #F6C6C2 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.project-link:hover {
+    background: rgba(26, 26, 46, 0.9) !important;
+    border-color: rgba(246, 198, 194, 0.6) !important;
+    box-shadow: 0 8px 25px rgba(246, 198, 194, 0.3) !important;
+}
+
+.project-card {
+    background: rgba(26, 26, 46, 0.6) !important;
+    border: 2px solid rgba(246, 198, 194, 0.2) !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.project-card:hover {
+    background: rgba(26, 26, 46, 0.8) !important;
+    border-color: rgba(246, 198, 194, 0.4) !important;
+    box-shadow: 0 12px 40px rgba(246, 198, 194, 0.25) !important;
 }
 
 /* Resume Page Specific Styles */
 .resume-title {
     font-family: 'Zain', sans-serif !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
+    color: #1a1a2e !important;  /* Dark navy blue for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 .resume-subtitle {
+    font-size: 14px;
     font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
+    color: #C2C9E5;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 .section-title {
     font-family: 'Zain', sans-serif !important;
     font-weight: 600 !important;
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 .info-label {
     font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .info-value, .contact-text, .education-level, .education-institution, .education-period, .skill-text, .training-title, .training-year {
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.education-level {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.training-title {
+    color: white !important;
+    font-weight: 600 !important;
 }
 
 .language-tag {
     font-family: 'Quicksand', sans-serif !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
+    background: rgba(26, 26, 46, 0.8) !important;
+    border: 2px solid rgba(246, 198, 194, 0.3) !important;
+    color: #F6C6C2 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.language-tag:hover {
+    background: rgba(26, 26, 46, 0.9) !important;
+    box-shadow: 0 6px 20px rgba(246, 198, 194, 0.3) !important;
+}
+
+.resume-section {
+    background: rgba(26, 26, 46, 0.6) !important;
+    border: 2px solid rgba(246, 198, 194, 0.2) !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.resume-section:hover {
+    background: rgba(26, 26, 46, 0.8) !important;
+    border-color: rgba(246, 198, 194, 0.4) !important;
+    box-shadow: 0 8px 30px rgba(246, 198, 194, 0.2) !important;
+}
+
+.contact-item, .education-item, .skill-item, .training-item {
+    background: rgba(20, 20, 40, 0.5) !important;
+    border: 1px solid rgba(138, 146, 199, 0.2) !important;
+}
+
+.contact-item:hover, .education-item:hover, .skill-item:hover, .training-item:hover {
+    background: rgba(20, 20, 40, 0.7) !important;
+    border-color: rgba(138, 146, 199, 0.3) !important;
+}
+
+/* WHITE GLOW CHARACTER ANIMATION */
+.normal-char, .glow-char {
+    display: inline-block;
+    /* Ensure both have the same font properties */
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.glow-char {
+    color: white !important;
+    display: inline-block;
+    animation: glow-pulse 0.6s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px currentColor;
+}
+
+@keyframes glow-pulse {
+    0% {
+        text-shadow: 
+            0 0 15px rgba(255, 255, 255, 1),
+            0 0 25px rgba(255, 255, 255, 0.8),
+            0 0 35px rgba(255, 255, 255, 0.6),
+            0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 1),
+            0 0 35px rgba(255, 255, 255, 0.9),
+            0 0 50px rgba(255, 255, 255, 0.7),
+            0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 }
 
 /* Responsive Design */
@@ -332,11 +458,11 @@ body {
     .nav {
         flex-direction: column;
         gap: 20px;
-        padding: 20px 20px; /* Adjusted for mobile */
+        padding: 20px 20px;
     }
 
     .brand-text {
-        font-size: 24px; /* Smaller on mobile */
+        font-size: 24px;
     }
 
     .nav-links {
@@ -352,7 +478,7 @@ body {
         flex-direction: column;
         text-align: center;
         padding: 20px;
-        margin-top: 120px; /* Adjusted for larger mobile header */
+        margin-top: 120px;
     }
 
     .circle-container {
@@ -379,7 +505,6 @@ body {
 
 @media (max-width: 480px) {
     .nav-links {
-        /* flex-direction: column; */
         gap: 10px;
     }
     
@@ -389,33 +514,5 @@ body {
     
     .subtitle {
         font-size: 18px;
-    }
-}
-
-
-.glow-char {
-    color: white !important;
-    text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.8),
-        0 0 10px rgba(255, 255, 255, 0.6),
-        0 0 15px rgba(255, 255, 255, 0.4),
-        0 0 20px rgba(255, 255, 255, 0.3);
-    animation: glow-pulse 0.6s ease-in-out infinite alternate;
-}
-
-@keyframes glow-pulse {
-    0% {
-        text-shadow: 
-            0 0 5px rgba(255, 255, 255, 0.8),
-            0 0 10px rgba(255, 255, 255, 0.6),
-            0 0 15px rgba(255, 255, 255, 0.4),
-            0 0 20px rgba(255, 255, 255, 0.3);
-    }
-    100% {
-        text-shadow: 
-            0 0 8px rgba(255, 255, 255, 1),
-            0 0 15px rgba(255, 255, 255, 0.8),
-            0 0 25px rgba(255, 255, 255, 0.6),
-            0 0 35px rgba(255, 255, 255, 0.4);
     }
 }

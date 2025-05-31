@@ -66,81 +66,93 @@
 
     <script src="warp-circle.js"></script>
     <script>
-        // Load CV data and update the brand text
+    // Load CV data and update the brand text
         async function loadCVData() {
-            try {
-                const response = await fetch('cv.json');
-                const data = await response.json();
-                const brandText = document.querySelector('.brand-text');
-                
-                // Format name in uppercase and add .DEV
-                const formattedName = data.personal_info.name.toUpperCase().replace(/\s+/g, '');
-                brandText.textContent = `${formattedName}.DEV`;
-                
-                // Update profile description
-                const description = document.querySelector('.description');
-                description.textContent = data.profile;
-                
-                // Typing animation for greeting with glowing effect
-                const text = `HI, I'M ${formattedName}`;
-                const typedTextElement = document.getElementById('typed-text');
-                let charIndex = 0;
-                let glowIndex = 0;
-                
-                function typeText() {
-                    if (charIndex < text.length) {
-                        typedTextElement.innerHTML = createTextWithGlow(text.slice(0, charIndex + 1), -1);
-                        charIndex++;
-                        setTimeout(typeText, 80); // Typing speed
-                    } else {
-                        // Start the glowing effect after typing is complete
-                        setTimeout(startGlowLoop, 500);
-                    }
+        try {
+            const response = await fetch('cv.json');
+            const data = await response.json();
+            const brandText = document.querySelector('.brand-text');
+            
+            // Format name in uppercase and add .DEV
+            const formattedName = data.personal_info.name.toUpperCase();
+            brandText.textContent = `${formattedName}.DEV`;
+            
+            // Update profile description
+            const description = document.querySelector('.description');
+            description.textContent = data.profile;
+            
+            // Typing animation for greeting with glowing effect
+            const text = `HI, I'M ${formattedName}`;
+            const typedTextElement = document.getElementById('typed-text');
+            let charIndex = 0;
+            let glowIndex = 0;
+            
+            function typeText() {
+                if (charIndex < text.length) {
+                    typedTextElement.innerHTML = createTextWithGlow(text.slice(0, charIndex + 1), -1);
+                    charIndex++;
+                    setTimeout(typeText, 80); // Typing speed
+                } else {
+                    // Start the glowing effect after typing is complete
+                    setTimeout(startGlowLoop, 500);
                 }
-                
-                function createTextWithGlow(displayText, glowPosition) {
-                    return displayText.split('').map((char, index) => {
-                        if (index === glowPosition) {
-                            return `<span class="glow-char">${char}</span>`;
-                        }
-                        return char;
-                    }).join('');
-                }
-                
-                function startGlowLoop() {
-                    const fullText = text;
-                    
-                    function animateGlow() {
-                        typedTextElement.innerHTML = createTextWithGlow(fullText, glowIndex);
-                        glowIndex = (glowIndex + 1) % fullText.length;
-                        setTimeout(animateGlow, 200); // Glow speed
-                    }
-                    
-                    animateGlow();
-                }
-                
-                // Start typing after a short delay
-                setTimeout(typeText, 500);
-                
-            } catch (error) {
-                console.error('Error loading CV data:', error);
-                // Fallback if CV data fails to load
-                const typedTextElement = document.getElementById('typed-text');
-                const text = "HI, I'M DEVELOPER";
-                let charIndex = 0;
-                
-                function typeText() {
-                    if (charIndex < text.length) {
-                        typedTextElement.textContent = text.slice(0, charIndex + 1);
-                        charIndex++;
-                        setTimeout(typeText, 80);
-                    }
-                }
-                
-                setTimeout(typeText, 500);
             }
+            
+            function createTextWithGlow(displayText, glowPosition) {
+                return displayText.split('').map((char, index) => {
+                    if (index === glowPosition) {
+                        return `<span class="glow-char">${char}</span>`;
+                    } else if (char === ' ') {
+                        // Preserve spaces without wrapping to avoid any styling issues
+                        return ' ';
+                    } else {
+                        // Wrap all non-glowing, non-space characters in a span with consistent styling
+                        return `<span class="normal-char">${char}</span>`;
+                    }
+                }).join('');
+            }
+            
+            function startGlowLoop() {
+                const fullText = text;
+                
+                function animateGlow() {
+                    // Skip spaces - find next non-space character
+                    let currentGlowIndex = glowIndex;
+                    while (fullText[currentGlowIndex] === ' ') {
+                        currentGlowIndex = (currentGlowIndex + 1) % fullText.length;
+                        // Prevent infinite loop if somehow all characters are spaces
+                        if (currentGlowIndex === glowIndex) break;
+                    }
+                    
+                    typedTextElement.innerHTML = createTextWithGlow(fullText, currentGlowIndex);
+                    glowIndex = (glowIndex + 1) % fullText.length;
+                    setTimeout(animateGlow, 200); // Glow speed
+                }
+                
+                animateGlow();
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeText, 500);
+            
+        } catch (error) {
+            console.error('Error loading CV data:', error);
+            // Fallback if CV data fails to load
+            const typedTextElement = document.getElementById('typed-text');
+            const text = "HI, I'M DEVELOPER";
+            let charIndex = 0;
+            
+            function typeText() {
+                if (charIndex < text.length) {
+                    typedTextElement.textContent = text.slice(0, charIndex + 1);
+                    charIndex++;
+                    setTimeout(typeText, 80);
+                }
+            }
+            
+            setTimeout(typeText, 500);
         }
-
+    }
         // Load CV data when the page loads
         document.addEventListener('DOMContentLoaded', loadCVData);
 
