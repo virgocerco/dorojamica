@@ -379,7 +379,7 @@ body {
 
 @media (max-width: 480px) {
     .nav-links {
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 10px;
     }
     
