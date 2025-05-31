@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="super.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Shadows+Into+Light&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <title>Portfolio - About Me</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="brand-text">DOROJA.DEV</span>
+                <div class="brand-dot"></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item active">
+                    <span class="nav-icon">●</span>
+                    <span>ABOUT ME</span>
+                </a>
+                <a href="project.html" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>PROJECTS</span>
+                </a>
+                <a href="#resume" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>RESUME</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Side - Warping Circle -->
+        <div class="circle-container">
+            <canvas id="canvas" width="400" height="400"></canvas>
+        </div>
+
+        <!-- Right Side - Content -->
+        <div class="content-container">
+            <h1 class="greeting">
+                <span id="typed-text"></span><span class="cursor"></span>
+            </h1>
+            <p class="subtitle">Information Technology Student & Tech Enthusiast</p>
+            <p class="description">
+                <!-- Profile description will be populated from CV JSON -->
+            </p>
+            
+            <div class="skills">
+                <span class="skill-tag">Microsoft Word</span>
+                <span class="skill-tag">Microsoft Excel</span>
+                <span class="skill-tag">Microsoft PowerPoint</span>
+                <span class="skill-tag">Adaptability</span>
+                <span class="skill-tag">Team Collaboration</span>
+                <span class="skill-tag">Basic Computer Literacy</span>
+                <span class="skill-tag">Willingness to Learn</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="warp-circle.js"></script>
+    <script>
+        // Load CV data and update the brand text
+        async function loadCVData() {
+            try {
+                const response = await fetch('cv.json');
+                const data = await response.json();
+                const brandText = document.querySelector('.brand-text');
+                
+                // Format name in uppercase and add .DEV
+                const formattedName = data.personal_info.name.toUpperCase().replace(/\s+/g, '');
+                brandText.textContent = `${formattedName}.DEV`;
+                
+                // Update profile description
+                const description = document.querySelector('.description');
+                description.textContent = data.profile;
+                
+                // Typing animation for greeting with glowing effect
+                const text = `HI, I'M ${formattedName}`;
+                const typedTextElement = document.getElementById('typed-text');
+                let charIndex = 0;
+                let glowIndex = 0;
+                
+                function typeText() {
+                    if (charIndex < text.length) {
+                        typedTextElement.innerHTML = createTextWithGlow(text.slice(0, charIndex + 1), -1);
+                        charIndex++;
+                        setTimeout(typeText, 80); // Typing speed
+                    } else {
+                        // Start the glowing effect after typing is complete
+                        setTimeout(startGlowLoop, 500);
+                    }
+                }
+                
+                function createTextWithGlow(displayText, glowPosition) {
+                    return displayText.split('').map((char, index) => {
+                        if (index === glowPosition) {
+                            return `<span class="glow-char">${char}</span>`;
+                        }
+                        return char;
+                    }).join('');
+                }
+                
+                function startGlowLoop() {
+                    const fullText = text;
+                    
+                    function animateGlow() {
+                        typedTextElement.innerHTML = createTextWithGlow(fullText, glowIndex);
+                        glowIndex = (glowIndex + 1) % fullText.length;
+                        setTimeout(animateGlow, 200); // Glow speed
+                    }
+                    
+                    animateGlow();
+                }
+                
+                // Start typing after a short delay
+                setTimeout(typeText, 500);
+                
+            } catch (error) {
+                console.error('Error loading CV data:', error);
+                // Fallback if CV data fails to load
+                const typedTextElement = document.getElementById('typed-text');
+                const text = "HI, I'M DEVELOPER";
+                let charIndex = 0;
+                
+                function typeText() {
+                    if (charIndex < text.length) {
+                        typedTextElement.textContent = text.slice(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typeText, 80);
+                    }
+                }
+                
+                setTimeout(typeText, 500);
+            }
+        }
+
+        // Load CV data when the page loads
+        document.addEventListener('DOMContentLoaded', loadCVData);
+
+        // Navigation functionality - removed preventDefault to allow actual navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                item.classList.add('active');
+                
+                // Let the browser handle the navigation normally
+            });
+        });
+    </script>
+</body>
+</html>

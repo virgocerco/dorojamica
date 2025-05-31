@@ -1,0 +1,54 @@
+{
+    "personal_info": {
+      "name": "DOROJA MICA",
+      "birthdate": "May 24, 2004",
+      "birthplace": "Meycauayan, Bulacan",
+      "gender": "Female",
+      "civil_status": "Single",
+      "nationality": "Filipino",
+      "religion": "Roman Catholic"
+    },
+    "contact": {
+      "phone": "+63 936-9336-213",
+      "email": "micadoroja0524@gmail.com",
+      "address": "Suaviso St. Pajo, Meycauayan Bulacan"
+    },
+    "profile": "I want to use my knowledge and skills to gain practical experience and learn about the inner workings of the company. I would like to do this by learning on the job and growing as an individual.",
+    "education": [
+      {
+        "level": "Bachelor of Science in Information Technology",
+        "institution": "Bulacan State University - Meneses",
+        "period": "2023-present"
+      },
+      {
+        "level": "Science, Technology, Engineering and Mathematics",
+        "institution": "Datamex College of Saint Adeline",
+        "period": "2021-2023"
+      },
+      {
+        "level": "Junior High School",
+        "institution": "Meycauayan National High School",
+        "period": "2017-2021"
+      },
+      {
+        "level": "Elementary School",
+        "institution": "Camalig Elementary School",
+        "period": "2010-2017"
+      }
+    ],
+    "languages": [
+      "Filipino",
+      "English"
+    ],
+    "skills": [
+      "Ability to learn and adapt to new technologies and situations",
+      "Proficiency in Word, Excel, and PowerPoint",
+      "Working effectively with others in a team setting"
+    ],
+    "seminar_training": [
+      {
+        "title": "Fil-Chi Love & Care Foundation Computer Training",
+        "year": "2018"
+      }
+    ]
+  }

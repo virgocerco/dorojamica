@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Shadows+Into+Light&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <title>Portfolio - Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            padding-top: 40px; 
+        }
+        /* Resume specific styles */
+        .resume-container {
+            padding: 120px 40px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .resume-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #F6C6C2;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(246, 198, 194, 0.4);
+            background: linear-gradient(135deg, #F6C6C2, #E8B4B8, #F6C6C2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        
+        .resume-subtitle {
+            font-size: 20px;
+            color: #C2C9E5;
+            opacity: 0.9;
+        }
+        
+        .resume-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .resume-section {
+            background: rgba(246, 198, 194, 0.05);
+            border: 1px solid rgba(246, 198, 194, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .resume-section.fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .resume-section:hover {
+            background: rgba(246, 198, 194, 0.08);
+            border-color: rgba(246, 198, 194, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(246, 198, 194, 0.1);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F6C6C2;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(246, 198, 194, 0.2);
+        }
+        
+        .section-icon {
+            font-size: 20px;
+        }
+        
+        .personal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            color: #8A92C7;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .info-value {
+            color: #B0B7D9;
+            font-size: 16px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(138, 146, 199, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(138, 146, 199, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .contact-icon {
+            font-size: 18px;
+            color: #8A92C7;
+        }
+        
+        .contact-text {
+            color: #B0B7D9;
+            font-size: 15px;
+        }
+        
+        .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(138, 146, 199, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid rgba(246, 198, 194, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .education-item:hover {
+            background: rgba(138, 146, 199, 0.1);
+            border-left-color: rgba(246, 198, 194, 0.6);
+            transform: translateX(5px);
+        }
+        
+        .education-level {
+            font-weight: bold;
+            color: #F6C6C2;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .education-institution {
+            color: #8A92C7;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .education-period {
+            color: #B0B7D9;
+            font-size: 13px;
+            font-style: italic;
+        }
+        
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(138, 146, 199, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: rgba(138, 146, 199, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .skill-bullet {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #F6C6C2, #8A92C7);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .skill-text {
+            color: #B0B7D9;
+            font-size: 14px;
+        }
+        
+        .languages-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .language-tag {
+            background: rgba(246, 198, 194, 0.1);
+            border: 1px solid rgba(246, 198, 194, 0.2);
+            padding: 12px 20px;
+            border-radius: 25px;
+            color: #F6C6C2;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .language-tag:hover {
+            background: rgba(246, 198, 194, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(246, 198, 194, 0.2);
+        }
+        
+        .training-item {
+            padding: 15px;
+            background: rgba(138, 146, 199, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(138, 146, 199, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .training-item:hover {
+            background: rgba(138, 146, 199, 0.1);
+            border-color: rgba(138, 146, 199, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .training-title {
+            color: #F6C6C2;
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .training-year {
+            color: #8A92C7;
+            font-size: 13px;
+        }
+        
+        /* Download CV Button */
+        .download-cv-container {
+            text-align: center;
+            margin: 50px 0 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .download-cv-container.fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .download-cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            background: linear-gradient(135deg, #F6C6C2, #E8B4B8);
+            border: none;
+            border-radius: 30px;
+            color: #1a1a2e;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(246, 198, 194, 0.3);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-cv-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .download-cv-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(246, 198, 194, 0.4);
+            background: linear-gradient(135deg, #E8B4B8, #F6C6C2);
+        }
+        
+        .download-cv-btn:hover::before {
+            left: 100%;
+        }
+        
+        .download-cv-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .download-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-cv-btn:hover .download-icon {
+            transform: translateY(2px);
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Full width sections */
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 868px) {
+            .resume-container {
+                padding: 140px 20px 40px;
+            }
+            
+            .resume-title {
+                font-size: 36px;
+            }
+            
+            .resume-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .personal-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-section {
+                padding: 25px;
+            }
+            
+            .download-cv-btn {
+                padding: 16px 30px;
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .resume-title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .download-cv-btn {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="brand-text">DOROJA.DEV</span>
+                <div class="brand-dot"></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>ABOUT ME</span>
+                </a>
+                <a href="project.html" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>PROJECTS</span>
+                </a>
+                <a href="resume.html" class="nav-item active">
+                    <span class="nav-icon">●</span>
+                    <span>RESUME</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Resume Content -->
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1 class="resume-title">MY RESUME</h1>
+            <p class="resume-subtitle">Professional background and qualifications</p>
+        </div>
+        
+        <div class="resume-content">
+            <!-- Personal Information -->
+            <div class="resume-section">
+                <h2 class="section-title">
+                    <span class="section-icon">👤</span>
+                    Personal Information
+                </h2>
+                <div class="personal-info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value" id="full-name">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Birthdate</div>
+                        <div class="info-value" id="birthdate">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Birthplace</div>
+                        <div class="info-value" id="birthplace">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Gender</div>
+                        <div class="info-value" id="gender">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Civil Status</div>
+                        <div class="info-value" id="civil-status">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Nationality</div>
+                        <div class="info-value" id="nationality">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Religion</div>
+                        <div class="info-value" id="religion">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="resume-section">
+                <h2 class="section-title">
+                    <span class="section-icon">📞</span>
+                    Contact Information
+                </h2>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-text" id="phone">-</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span class="contact-text" id="email">-</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🏠</span>
+                    <span class="contact-text" id="address">-</span>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section full-width">
+                <h2 class="section-title">
+                    <span class="section-icon">🎓</span>
+                    Education
+                </h2>
+                <div id="education-list">
+                    <!-- Education items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="resume-section">
+                <h2 class="section-title">
+                    <span class="section-icon">💼</span>
+                    Skills
+                </h2>
+                <ul class="skills-list" id="skills-list">
+                    <!-- Skills will be populated here -->
+                </ul>
+            </div>
+
+            <!-- Languages -->
+            <div class="resume-section">
+                <h2 class="section-title">
+                    <span class="section-icon">🌐</span>
+                    Languages
+                </h2>
+                <div class="languages-list" id="languages-list">
+                    <!-- Languages will be populated here -->
+                </div>
+            </div>
+
+            <!-- Seminar & Training -->
+            <div class="resume-section full-width">
+                <h2 class="section-title">
+                    <span class="section-icon">📚</span>
+                    Seminar & Training
+                </h2>
+                <div id="training-list">
+                    <!-- Training items will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Download CV Button -->
+        <div class="download-cv-container">
+            <a href="cv.jpg" download="DOROJA_MICA_CV.jpg" class="download-cv-btn">
+                <span class="download-icon">📄</span>
+                <span>DOWNLOAD CV</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // CV Data
+        const cvData = {
+            "personal_info": {
+                "name": "DOROJA MICA",
+                "birthdate": "May 24, 2004",
+                "birthplace": "Meycauayan, Bulacan",
+                "gender": "Female",
+                "civil_status": "Single",
+                "nationality": "Filipino",
+                "religion": "Roman Catholic"
+            },
+            "contact": {
+                "phone": "+63 936-9336-213",
+                "email": "micadoroja0524@gmail.com",
+                "address": "Suaviso St. Pajo, Meycauayan Bulacan"
+            },
+            "education": [
+                {
+                    "level": "Bachelor of Science in Information Technology",
+                    "institution": "Bulacan State University - Meneses",
+                    "period": "2023-present"
+                },
+                {
+                    "level": "Science, Technology, Engineering and Mathematics",
+                    "institution": "Datamex College of Saint Adeline",
+                    "period": "2021-2023"
+                },
+                {
+                    "level": "Junior High School",
+                    "institution": "Meycauayan National High School",
+                    "period": "2017-2021"
+                },
+                {
+                    "level": "Elementary School",
+                    "institution": "Camalig Elementary School",
+                    "period": "2010-2017"
+                }
+            ],
+            "languages": [
+                "Filipino",
+                "English"
+            ],
+            "skills": [
+                "Ability to learn and adapt to new technologies and situations",
+                "Proficiency in Word, Excel, and PowerPoint",
+                "Working effectively with others in a team setting"
+            ],
+            "seminar_training": [
+                {
+                    "title": "Fil-Chi Love & Care Foundation Computer Training",
+                    "year": "2018"
+                }
+            ]
+        };
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Load and populate resume data
+        function loadResumeData() {
+            // Update brand text
+            const brandText = document.querySelector('.brand-text');
+            const formattedName = cvData.personal_info.name.toUpperCase().replace(/\s+/g, '');
+            brandText.textContent = `${formattedName}.DEV`;
+
+            // Populate personal information
+            document.getElementById('full-name').textContent = cvData.personal_info.name;
+            document.getElementById('birthdate').textContent = cvData.personal_info.birthdate;
+            document.getElementById('birthplace').textContent = cvData.personal_info.birthplace;
+            document.getElementById('gender').textContent = cvData.personal_info.gender;
+            document.getElementById('civil-status').textContent = cvData.personal_info.civil_status;
+            document.getElementById('nationality').textContent = cvData.personal_info.nationality;
+            document.getElementById('religion').textContent = cvData.personal_info.religion;
+
+            // Populate contact information
+            document.getElementById('phone').textContent = cvData.contact.phone;
+            document.getElementById('email').textContent = cvData.contact.email;
+            document.getElementById('address').textContent = cvData.contact.address;
+
+            // Populate education
+            const educationList = document.getElementById('education-list');
+            cvData.education.forEach(edu => {
+                const eduItem = document.createElement('div');
+                eduItem.className = 'education-item';
+                eduItem.innerHTML = `
+                    <div class="education-level">${edu.level}</div>
+                    <div class="education-institution">${edu.institution}</div>
+                    <div class="education-period">${edu.period}</div>
+                `;
+                educationList.appendChild(eduItem);
+            });
+
+            // Populate skills
+            const skillsList = document.getElementById('skills-list');
+            cvData.skills.forEach(skill => {
+                const skillItem = document.createElement('li');
+                skillItem.className = 'skill-item';
+                skillItem.innerHTML = `
+                    <div class="skill-bullet"></div>
+                    <div class="skill-text">${skill}</div>
+                `;
+                skillsList.appendChild(skillItem);
+            });
+
+            // Populate languages
+            const languagesList = document.getElementById('languages-list');
+            cvData.languages.forEach(language => {
+                const langTag = document.createElement('span');
+                langTag.className = 'language-tag';
+                langTag.textContent = language;
+                languagesList.appendChild(langTag);
+            });
+
+            // Populate training
+            const trainingList = document.getElementById('training-list');
+            cvData.seminar_training.forEach(training => {
+                const trainingItem = document.createElement('div');
+                trainingItem.className = 'training-item';
+                trainingItem.innerHTML = `
+                    <div class="training-title">${training.title}</div>
+                    <div class="training-year">${training.year}</div>
+                `;
+                trainingList.appendChild(trainingItem);
+            });
+
+            // Setup scroll animations
+            setupScrollAnimations();
+        }
+
+        // Setup scroll animations
+        function setupScrollAnimations() {
+            // Observe all resume sections
+            const sections = document.querySelectorAll('.resume-section');
+            sections.forEach((section, index) => {
+                // Add delay based on index
+                section.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(section);
+            });
+
+            // Observe download button
+            const downloadContainer = document.querySelector('.download-cv-container');
+            if (downloadContainer) {
+                downloadContainer.style.animationDelay = `${sections.length * 0.1}s`;
+                observer.observe(downloadContainer);
+            }
+        }
+
+        // Load resume data when the page loads
+        document.addEventListener('DOMContentLoaded', loadResumeData);
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

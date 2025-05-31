@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Portfolio - Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Shadows+Into+Light&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            padding-top: 40px; 
+        }
+        /* Projects specific styles */
+        .projects-container {
+            padding: 120px 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        .projects-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .projects-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #F6C6C2;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(246, 198, 194, 0.4);
+            background: linear-gradient(135deg, #F6C6C2, #E8B4B8, #F6C6C2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        
+        .projects-subtitle {
+            font-size: 20px;
+            color: #C2C9E5;
+            opacity: 0.9;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(246, 198, 194, 0.05);
+            border: 1px solid rgba(246, 198, 194, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(246, 198, 194, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            background: rgba(246, 198, 194, 0.08);
+            border-color: rgba(246, 198, 194, 0.3);
+            box-shadow: 0 12px 40px rgba(246, 198, 194, 0.15);
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #F6C6C2, #8A92C7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(246, 198, 194, 0.3);
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F6C6C2;
+            margin: 0;
+        }
+        
+        .project-description {
+            color: #B0B7D9;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .tech-tag {
+            background: rgba(138, 146, 199, 0.1);
+            border: 1px solid rgba(138, 146, 199, 0.2);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #8A92C7;
+            font-weight: 500;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(246, 198, 194, 0.1);
+            border: 1px solid rgba(246, 198, 194, 0.2);
+            border-radius: 25px;
+            color: #F6C6C2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(246, 198, 194, 0.1), transparent);
+            transition: left 0.4s ease;
+        }
+        
+        .project-link:hover {
+            background: rgba(246, 198, 194, 0.2);
+            border-color: rgba(246, 198, 194, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(246, 198, 194, 0.2);
+        }
+        
+        .project-link:hover::before {
+            left: 100%;
+        }
+        
+        .link-icon {
+            font-size: 16px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 868px) {
+            .projects-container {
+                padding: 140px 20px 40px;
+            }
+            
+            .projects-title {
+                font-size: 36px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .project-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .projects-title {
+                font-size: 28px;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .project-link {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="brand-text">DOROJA.DEV</span>
+                <div class="brand-dot"></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>ABOUT ME</span>
+                </a>
+                <a href="project.html" class="nav-item active">
+                    <span class="nav-icon">●</span>
+                    <span>PROJECTS</span>
+                </a>
+                <a href="resume.html" class="nav-item">
+                    <span class="nav-icon">●</span>
+                    <span>RESUME</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Projects Content -->
+    <div class="projects-container">
+        <div class="projects-header">
+            <h1 class="projects-title">MY PROJECTS</h1>
+            <p class="projects-subtitle">Showcasing my development journey and technical skills</p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Jeju Island Project Card -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🏝️</div>
+                    <h3 class="project-title">Jeju Island Travel Guide</h3>
+                </div>
+                
+                <p class="project-description">
+                    A beautiful and interactive travel guide website for Jeju Island, South Korea. 
+                    Features stunning visuals, destination information, and travel tips to help visitors 
+                    explore this amazing volcanic island. Built with modern web technologies for an 
+                    engaging user experience.
+                </p>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive Design</span>
+                    <span class="tech-tag">Vercel</span>
+                </div>
+                
+                <div class="project-links">
+                    <a href="https://jejuisland-seven.vercel.app/" target="_blank" class="project-link">
+                        <span class="link-icon">🔗</span>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Placeholder for future projects -->
+            <div class="project-card" style="opacity: 0.6; border-style: dashed;">
+                <div class="project-header">
+                    <div class="project-icon">➕</div>
+                    <h3 class="project-title">Next Project Coming Soon</h3>
+                </div>
+                
+                <p class="project-description">
+                    More exciting projects are in development! Stay tuned for updates as I continue 
+                    to build and showcase new applications and websites.
+                </p>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">TBD</span>
+                </div>
+                
+                <div class="project-links">
+                    <span class="project-link" style="opacity: 0.5; cursor: not-allowed;">
+                        <span class="link-icon">⏳</span>
+                        <span>Coming Soon</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load CV data and update the brand text
+        async function loadCVData() {
+            try {
+                const response = await fetch('cv.json');
+                const data = await response.json();
+                const brandText = document.querySelector('.brand-text');
+                
+                // Format name in uppercase and add .DEV
+                const formattedName = data.personal_info.name.toUpperCase().replace(/\s+/g, '');
+                brandText.textContent = `${formattedName}.DEV`;
+                
+            } catch (error) {
+                console.error('Error loading CV data:', error);
+                // Keep default brand text if CV data fails to load
+            }
+        }
+
+        // Load CV data when the page loads
+        document.addEventListener('DOMContentLoaded', loadCVData);
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                // Don't prevent default for actual navigation
+                // Remove active class from all items
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
