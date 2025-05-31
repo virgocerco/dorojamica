@@ -46,7 +46,7 @@ class WarpingCircle {
             console.log('Profile image not found - using fallback pattern');
             this.createFallbackImage();
         };
-        this.image.src = 'super.png';
+        this.image.src = 'sprofile.jpg';
     }
     
     createFallbackImage() {
